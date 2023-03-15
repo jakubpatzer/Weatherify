@@ -20,7 +20,7 @@ const CurrentWeather = ({
     <div className="text-black text-center bg-white rounded px-5 py-5 w-full">
       <h1 className="mb-6">Current weather conditions</h1>
 
-      <div className="flex sm:flex-row flex-col sm:text-left justify-between">
+      <div className="flex sm:flex-row flex-col sm:text-left justify-between items-center">
         <div>
           <p className="mb-4 text-4xl">
             {condition && (

@@ -18,7 +18,7 @@ const ForecastWeather = ({ forecastday }: { forecastday?: Day | any }) => {
         }) => (
           <div
             key={data.date_epoch}
-            className="flex flex-col sm:flex-row justify-between items-center sm:items-start mb-3 px-3 py-7 bg-white"
+            className="flex flex-col sm:flex-row justify-between items-center sm:items-start mb-3 px-3 py-7 bg-white rounded"
           >
             <div className="text-center mb-3 sm:mb-0">
               {getDay(data.date)}

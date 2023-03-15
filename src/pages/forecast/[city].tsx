@@ -47,9 +47,9 @@ const City = ({ query }: { query: { city: string } }) => {
   return (
     <MainLayout>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-white text-3xl my-10">{city}</h1>
-        <Link className="text-white mb-5 self-start" href="/">
-          ← BACK
+        <h1 className="text-white text-3xl my-8">{city}</h1>
+        <Link className="text-white mb-5 self-start text-lg" href="/">
+          <span className="text-xl">←</span>  BACK
         </Link>
         {loading ? (
           <div className="text-white text-2xl">Loading...</div>
@@ -59,9 +59,9 @@ const City = ({ query }: { query: { city: string } }) => {
         <button
           className="mt-5 text-white mb-5"
           onClick={() => setShowForecast(!showForecast)}
-        >
-          {showForecast ? "Hide" : "Show"} forecast
-          <div className="animate-bounce">{showForecast ? "↑" : "↓"}</div>
+        > 
+          <span className="block mb-1 text-lg">{showForecast ? "Hide" : "Show"} forecast</span>
+          <span className="block animate-bounce text-xl">{showForecast ? "↑" : "↓"}</span>
         </button>
         {showForecast && <ForecastWeather {...forecast} />}
       </div>

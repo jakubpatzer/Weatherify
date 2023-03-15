@@ -3,9 +3,11 @@ import axios from "axios";
 import { useState } from "react";
 import { City } from "../interfaces";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Search = () => {
-  const [cities, setCities] = useState([]);
+  const router = useRouter();
+  const [cities, setCities] = useState<City[]>([]);
   const handleSearchCity = async (city: string) => {
     const options = {
       method: "GET",
@@ -20,18 +22,25 @@ const Search = () => {
         const resp = await axios.request(options);
         setCities(resp.data);
       }
-    } catch (error : any) {
-      console.log('Error: ', error)
+    } catch (error: any) {
+      console.log("Error: ", error);
     }
   };
   return (
     <>
       <div className="mb-10">
         <input
+          className="h-9 rounded" 
           type="text"
           required
           placeholder="Enter city"
           onChange={(e) => handleSearchCity(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault()
+              router.push(`/forecast/${cities[0].name}`);
+            }
+          }}
         />
       </div>
 
@@ -39,7 +48,9 @@ const Search = () => {
         {cities.length > 0 &&
           cities.map((city: City) => (
             <div key={city.name} className="">
-              <Link className="text-2xl" href={`/forecast/${city.name}`}>{city.name}</Link>
+              <Link className="text-2xl" href={`/forecast/${city.name}`}>
+                {city.name}
+              </Link>
             </div>
           ))}
       </div>
