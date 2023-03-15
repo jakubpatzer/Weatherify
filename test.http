@@ -1,0 +1,1 @@
+GET http://dataservice.accuweather.com/locations/v1/cities/search?apikey=EaAAa7g56TuuDcCc9Wv4eNGQXQOZsDlf&q=gdansk
