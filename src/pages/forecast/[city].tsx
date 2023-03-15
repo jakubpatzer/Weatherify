@@ -6,16 +6,23 @@ import { Current, Forecast } from "../../interfaces";
 import CurrentWeather from "@/components/CurrentWeather";
 import ForecastWeather from "@/components/ForecastWeather";
 import MainLayout from "@/layouts/MainLayout";
+import { GetServerSideProps, NextPageContext } from "next";
 
-const City = () => {
+export const getServerSideProps = async (context: NextPageContext) => {
+  const { query } = context;
+  return { props: { query } };
+}
+
+const City = ({ query } : { query: any }) => {
+  const router = useRouter();
+  const { city } = router.query;
   const [current, setCurrent] = useState<Current>();
   const [forecast, setForecast] = useState<Forecast>();
   const [showForecast, setShowForecast] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
-  const { city } = router.query;
 
   const handleGetWeather = async () => {
+    console.log(query)
     const options = {
       method: "GET",
       url: "https://weatherapi-com.p.rapidapi.com/forecast.json",
@@ -28,7 +35,6 @@ const City = () => {
     setLoading(true);
     try {
       const resp = await axios.request(options);
-      console.log(resp.data.current.condition.icon)
       setCurrent(resp.data.current);
       setForecast(resp.data.forecast);
     } catch (error: any) {

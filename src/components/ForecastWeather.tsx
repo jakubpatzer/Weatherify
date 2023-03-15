@@ -5,7 +5,7 @@ import { getDay } from "@/utils";
 const ForecastWeather = ({ forecastday }: { forecastday?: Day | any }) => {
   return (
     <div className="flex flex-col w-full">
-      {forecastday.map(
+      {forecastday && forecastday.map(
         (data: {
           date: string;
           date_epoch: number;
