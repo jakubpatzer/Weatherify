@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 import { Current, Forecast } from "../../interfaces";
 import CurrentWeather from "@/components/CurrentWeather";
 import ForecastWeather from "@/components/ForecastWeather";
 import MainLayout from "@/layouts/MainLayout";
-import { GetServerSideProps, NextPageContext } from "next";
+import { NextPageContext } from "next";
 
 export const getServerSideProps = async (context: NextPageContext) => {
   const { query } = context;
   return { props: { query } };
-}
+};
 
-const City = ({ query } : { query: any }) => {
-  const router = useRouter();
-  const { city } = router.query;
+const City = ({ query }: { query: { city: string } }) => {
+  const { city } = query;
   const [current, setCurrent] = useState<Current>();
   const [forecast, setForecast] = useState<Forecast>();
   const [showForecast, setShowForecast] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleGetWeather = async () => {
-    console.log(query)
     const options = {
       method: "GET",
       url: "https://weatherapi-com.p.rapidapi.com/forecast.json",
