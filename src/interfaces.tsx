@@ -1,10 +1,11 @@
 
-interface Condition {
-  text: string;
-  icon: string;
+export interface Condition {
+  text?: string;
+  icon?: string;
 }
 
-interface Day {
+export interface Day {
+  [x: string]: any;
   date: string;
   date_epoch: number;
   day: DayData;

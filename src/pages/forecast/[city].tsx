@@ -51,7 +51,7 @@ const City = () => {
         {loading ? (
           <div className="text-white text-2xl">Loading...</div>
         ) : (
-          <CurrentWeather current={current} />
+          <CurrentWeather {...current} />
         )}
         <button
           className="mt-5 text-white mb-5"
@@ -60,7 +60,7 @@ const City = () => {
           {showForecast ? "Hide" : "Show"} forecast
           <div className="animate-bounce">{showForecast ? "↑" : "↓"}</div>
         </button>
-        {showForecast && <ForecastWeather forecast={forecast} />}
+        {showForecast && <ForecastWeather {...forecast} />}
       </div>
     </MainLayout>
   );
