@@ -1,5 +1,5 @@
 import React from "react";
-import { Condition } from "@/interfaces";
+import { Current } from "@/interfaces";
 
 const CurrentWeather = ({
   condition,
@@ -8,14 +8,7 @@ const CurrentWeather = ({
   cloud,
   humidity,
   wind_kph,
-}: {
-  condition?: Condition;
-  temp_c?: number;
-  feelslike_c?: number;
-  cloud?: number;
-  humidity?: number;
-  wind_kph?: number;
-}) => {
+}: Current) => {
   return (
     <div className="text-black text-center bg-white rounded px-5 py-5 w-full">
       <h1 className="mb-6">Current weather conditions</h1>

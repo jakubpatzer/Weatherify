@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 const Search = () => {
   const router = useRouter();
   const [cities, setCities] = useState<City[]>([]);
-  const handleSearchCity = async (city: string) => {
+  const handleSearchCity = async (city: string): Promise<void> => {
     const options = {
       method: "GET",
       url: "https://api.api-ninjas.com/v1/city",

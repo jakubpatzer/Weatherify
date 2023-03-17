@@ -14,12 +14,12 @@ export const getServerSideProps = async (context: NextPageContext) => {
 
 const City = ({ query }: { query: { city: string } }) => {
   const { city } = query;
-  const [current, setCurrent] = useState<Current>();
-  const [forecast, setForecast] = useState<Forecast>();
   const [showForecast, setShowForecast] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [current, setCurrent] = useState<Current>();
+  const [forecast, setForecast] = useState<Forecast | any>();
 
-  const handleGetWeather = async () => {
+  const handleGetWeather = async (): Promise<void> => {
     const options = {
       method: "GET",
       url: "https://weatherapi-com.p.rapidapi.com/forecast.json",
@@ -49,7 +49,7 @@ const City = ({ query }: { query: { city: string } }) => {
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-white text-3xl my-8">{city}</h1>
         <Link className="text-white mb-5 self-start text-lg" href="/">
-          <span className="text-xl">←</span>  BACK
+          <span className="text-xl">←</span> BACK
         </Link>
         {loading ? (
           <div className="text-white text-2xl">Loading...</div>
@@ -59,11 +59,15 @@ const City = ({ query }: { query: { city: string } }) => {
         <button
           className="mt-5 text-white mb-5"
           onClick={() => setShowForecast(!showForecast)}
-        > 
-          <span className="block mb-1 text-lg">{showForecast ? "Hide" : "Show"} forecast</span>
-          <span className="block animate-bounce text-xl">{showForecast ? "↑" : "↓"}</span>
+        >
+          <span className="block mb-1 text-lg">
+            {showForecast ? "Hide" : "Show"} forecast
+          </span>
+          <span className="block animate-bounce text-xl">
+            {showForecast ? "↑" : "↓"}
+          </span>
         </button>
-        {showForecast && <ForecastWeather {...forecast} />}
+        {showForecast && <ForecastWeather forecast={forecast} />}
       </div>
     </MainLayout>
   );

@@ -1,11 +1,10 @@
 
 export interface Condition {
-  text?: string;
-  icon?: string;
+  text: string;
+  icon: string;
 }
 
 export interface Day {
-  [x: string]: any;
   date: string;
   date_epoch: number;
   day: DayData;
@@ -23,12 +22,12 @@ export interface City {
 }
 
 export interface Current {
-  condition: Condition;
-  temp_c: number;
-  feelslike_c: number;
-  cloud: number;
-  humidity: number;
-  wind_kph: number;
+  condition?: Condition;
+  temp_c?: number;
+  feelslike_c?: number;
+  cloud?: number;
+  humidity?: number;
+  wind_kph?: number;
 }
 
 export interface Forecast {
